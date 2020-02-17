@@ -6,6 +6,9 @@ namespace Contraly.Portal.Data.EntityFramework.Entities
 {
     public class User : IdentityUser<int>
     {
+
+        public Guid Guid { get; set; }
+
         public string Name { get; set; }
 
         public string ProfileImage { get; set; }
@@ -14,7 +17,7 @@ namespace Contraly.Portal.Data.EntityFramework.Entities
 
         //Navigation
 
-        public ICollection<UserOrganization> UserOrganization { get; set; }
+        public ICollection<UserOrganization> UserOrganizations { get; set; }
 
     }
 }

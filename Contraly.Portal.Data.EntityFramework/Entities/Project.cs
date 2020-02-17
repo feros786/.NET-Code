@@ -10,14 +10,16 @@ namespace Contraly.Portal.Data.EntityFramework.Entities
 
         public string Description { get; set; }
 
-        public long CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
-        public long LastUpdatedBy { get; set; }
+        public int? LastUpdatedBy { get; set; }
 
-        public long OrganizationId { get; set; }
+        public int OrganizationId { get; set; }
 
         //Navigation
 
         public Organization Organization { get; set; }
+
+        public ICollection<Upload> Uploads { get; set; }
     }
 }

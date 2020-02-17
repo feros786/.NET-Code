@@ -28,6 +28,9 @@ namespace Contraly.Portal.Data.EntityFramework.Mappings
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50)
                 .IsRequired();
+
+            builder.HasIndex(u => u.Guid)
+                .IsUnique();
         }
     }
 }

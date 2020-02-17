@@ -18,6 +18,10 @@ namespace Contraly.Portal.Data.EntityFramework.Entities
 
         public int ProjectId { get; set; }
 
+        public int CreatedBy { get; set; }
+
+        public int? LastUpdatedBy { get; set; }
+
         //Navigation
 
         public Project Project { get; set; }

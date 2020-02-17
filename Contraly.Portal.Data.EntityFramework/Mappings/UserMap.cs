@@ -7,6 +7,8 @@ namespace Contraly.Portal.Data.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<Entities.User> builder)
         {
+            builder.HasIndex(u => u.Guid)
+                .IsUnique();
 
             builder.Property(u => u.Name)
                 .HasColumnType("varchar(100)")

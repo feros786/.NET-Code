@@ -6,9 +6,9 @@ namespace Contraly.Portal.Data.EntityFramework.Entities
 {
     public class UserOrganization
     {
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
-        public long OrganizationId { get; set; }
+        public int OrganizationId { get; set; }
 
         //Navigation
 

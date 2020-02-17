@@ -14,6 +14,13 @@ namespace Contraly.Portal.Data.EntityFramework.Mappings
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.HasIndex(o => o.Guid)
+                .IsUnique();
+
+            //Table relationships
+            builder.HasMany(o => o.Projects)
+                .WithOne(p => p.Organization);
         }
     }
 }
