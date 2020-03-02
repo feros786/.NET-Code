@@ -12,6 +12,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Contraly.Portal.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Contraly.Portal.Business.Services;
+using Contraly.Portal.Business.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace Contraly.Portal.Api
 {
@@ -32,6 +41,52 @@ namespace Contraly.Portal.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString"),
                 b => b.MigrationsAssembly("Contraly.Portal.Api"))
             );
+
+            services.AddIdentity<User, IdentityRole<int>>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<ContralyDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+
+                    ValidIssuer = Configuration["JWT:ValidIssuer"],
+                    ValidAudience = Configuration["JWT:ValidAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"])),
+                };
+            });
+
+            ConfigureCustomServices(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Contraly API",
+                    Version = "v1"
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,13 +98,11 @@ namespace Contraly.Portal.Api
                 dbContext.Database.EnsureCreated();
             }
 
-            app.UseHttpsRedirection();
-
-
-
-
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -57,6 +110,13 @@ namespace Contraly.Portal.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+        }
+
+        private void ConfigureCustomServices(IServiceCollection services)
+        {
+            services.AddSingleton<ITokenService, TokenService>();
         }
     }
 }
