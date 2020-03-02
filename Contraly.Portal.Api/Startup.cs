@@ -45,6 +45,10 @@ namespace Contraly.Portal.Api
 
             app.UseHttpsRedirection();
 
+
+
+
+
             app.UseRouting();
 
             app.UseAuthorization();

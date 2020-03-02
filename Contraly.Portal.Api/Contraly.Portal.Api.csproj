@@ -17,5 +17,9 @@
     <ProjectReference Include="..\Contraly.Portal.Data.EntityFramework\Contraly.Portal.Data.EntityFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 
 </Project>

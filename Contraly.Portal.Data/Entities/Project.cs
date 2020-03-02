@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contraly.Portal.Data.EntityFramework.Entities
+namespace Contraly.Portal.Data.Entities
 {
     public class Project : BaseEntity
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Contraly.Portal.Data.EntityFramework.Entities
+namespace Contraly.Portal.Data.Entities
 {
     public class User : IdentityUser<int>
     {

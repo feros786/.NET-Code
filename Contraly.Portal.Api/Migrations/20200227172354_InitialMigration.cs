@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Contraly.Portal.Api.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,9 @@ namespace Contraly.Portal.Api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Guid = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    ProfileImage = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(100)", maxLength: 256, nullable: false),
@@ -42,9 +45,6 @@ namespace Contraly.Portal.Api.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    Guid = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    ProfileImage = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -59,11 +59,11 @@ namespace Contraly.Portal.Api.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Guid = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     CreatedBy = table.Column<int>(nullable: false),
-                    LastUpdatedBy = table.Column<int>(nullable: true)
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: true),
+                    LastUpdatedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -183,13 +183,14 @@ namespace Contraly.Portal.Api.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Guid = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(nullable: true),
+                    OrganizationId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true),
                     CreatedBy = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     LastUpdatedBy = table.Column<int>(nullable: true),
-                    OrganizationId = table.Column<int>(nullable: false)
+                    LastUpdatedDate = table.Column<DateTime>(nullable: true)
+
                 },
                 constraints: table =>
                 {
@@ -233,16 +234,16 @@ namespace Contraly.Portal.Api.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Guid = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(nullable: true),
+                    ProjectId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true),
                     Path = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Folder = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Size = table.Column<long>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: false),
                     CreatedBy = table.Column<int>(nullable: false),
-                    LastUpdatedBy = table.Column<int>(nullable: true)
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: true),
+                    LastUpdatedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {

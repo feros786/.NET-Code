@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Contraly.Portal.Data.EntityFramework.Entities
+namespace Contraly.Portal.Data.Entities
 {
     public class Organization : BaseEntity
     {

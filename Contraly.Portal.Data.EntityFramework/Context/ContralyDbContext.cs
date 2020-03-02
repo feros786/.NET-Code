@@ -1,11 +1,8 @@
-﻿using Contraly.Portal.Data.EntityFramework.Entities;
+﻿using Contraly.Portal.Data.Entities;
 using Contraly.Portal.Data.EntityFramework.Mappings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Contraly.Portal.Data.EntityFramework.Context
 {
@@ -16,10 +13,10 @@ namespace Contraly.Portal.Data.EntityFramework.Context
         {
         }
 
-        public DbSet<Entities.Organization> Organizations { get; set; }
-        public DbSet<Entities.Project> Projects { get; set; }
-        public DbSet<Entities.Upload> Uploads { get; set; }
-        public DbSet<Entities.UserOrganization> UserOrganizations { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Upload> Uploads { get; set; }
+        public DbSet<UserOrganization> UserOrganizations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

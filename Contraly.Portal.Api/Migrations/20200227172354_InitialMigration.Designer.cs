@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contraly.Portal.Api.Migrations
 {
     [DbContext(typeof(ContralyDbContext))]
-    [Migration("20200217194313_initial-migration")]
-    partial class initialmigration
+    [Migration("20200227172354_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Contraly.Portal.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.Organization", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.Organization", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace Contraly.Portal.Api.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.Project", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +100,7 @@ namespace Contraly.Portal.Api.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.Upload", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.Upload", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +157,7 @@ namespace Contraly.Portal.Api.Migrations
                     b.ToTable("Uploads");
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.User", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -242,7 +242,7 @@ namespace Contraly.Portal.Api.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.UserOrganization", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.UserOrganization", b =>
                 {
                     b.Property<int>("OrganizationId")
                         .HasColumnType("int");
@@ -387,33 +387,33 @@ namespace Contraly.Portal.Api.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.Project", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.Project", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.Organization", "Organization")
+                    b.HasOne("Contraly.Portal.Data.Entities.Organization", "Organization")
                         .WithMany("Projects")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.Upload", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.Upload", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.Project", "Project")
+                    b.HasOne("Contraly.Portal.Data.Entities.Project", "Project")
                         .WithMany("Uploads")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Contraly.Portal.Data.EntityFramework.Entities.UserOrganization", b =>
+            modelBuilder.Entity("Contraly.Portal.Data.Entities.UserOrganization", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.Organization", "Organization")
+                    b.HasOne("Contraly.Portal.Data.Entities.Organization", "Organization")
                         .WithMany("UserOrganizations")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.User", "User")
+                    b.HasOne("Contraly.Portal.Data.Entities.User", "User")
                         .WithMany("UserOrganizations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -431,7 +431,7 @@ namespace Contraly.Portal.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.User", null)
+                    b.HasOne("Contraly.Portal.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -440,7 +440,7 @@ namespace Contraly.Portal.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.User", null)
+                    b.HasOne("Contraly.Portal.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -455,7 +455,7 @@ namespace Contraly.Portal.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.User", null)
+                    b.HasOne("Contraly.Portal.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +464,7 @@ namespace Contraly.Portal.Api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("Contraly.Portal.Data.EntityFramework.Entities.User", null)
+                    b.HasOne("Contraly.Portal.Data.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
