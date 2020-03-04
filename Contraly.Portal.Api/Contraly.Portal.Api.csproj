@@ -19,7 +19,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Contraly.Portal.Business\Contraly.Portal.Business.csproj" />
+    <ProjectReference Include="..\Contraly.Portal.Core\Contraly.Portal.Core.csproj" />
     <ProjectReference Include="..\Contraly.Portal.Data.EntityFramework\Contraly.Portal.Data.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 

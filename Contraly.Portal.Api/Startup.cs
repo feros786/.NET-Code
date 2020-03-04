@@ -21,6 +21,7 @@ using Contraly.Portal.Business.Services;
 using Contraly.Portal.Business.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
+using Contraly.Portal.Api.Filters;
 
 namespace Contraly.Portal.Api
 {
@@ -105,6 +106,8 @@ namespace Contraly.Portal.Api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseMiddleware(typeof(ExceptionMiddleware));
 
             app.UseEndpoints(endpoints =>
             {
